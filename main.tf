@@ -14,12 +14,6 @@ provider "aws" {
 
 module "common" {
     source                    = "git::git@github.com:tomarv2/terraform-global.git"
-//  source                     = "./../../../../_base_module/common"
-}
-
-module "aws_global" {
-  source                    = "git::git@github.com:tomarv2/terraform-global.git"
-//  source                     = "./../../../../_base_module/aws"
 }
 
 locals {
