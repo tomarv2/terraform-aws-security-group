@@ -13,11 +13,13 @@ provider "aws" {
 }
 
 module "common" {
-  source                     = "./../../../../_base_module/common"
+    source                    = "git::git@github.com:tomarv2/terraform-global.git"
+//  source                     = "./../../../../_base_module/common"
 }
 
 module "aws_global" {
-  source                     = "./../../../../_base_module/aws"
+  source                    = "git::git@github.com:tomarv2/terraform-global.git"
+//  source                     = "./../../../../_base_module/aws"
 }
 
 locals {
