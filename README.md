@@ -12,9 +12,7 @@ Terraform module for [SecurityGroups](https://docs.aws.amazon.com/vpc/latest/use
 
 **NOTE:** 
 
-- Read more on [tfremote](https://github.com/tomarv2/tfremote) 
-- I will not be pinning the main branch to keep up with Terraform releases, for deployments please
-use the latest tag versions which have versions pinned for stability.
+- Read more on [tfremote](https://github.com/tomarv2/tfremote)
 
 ## How to use?
 
