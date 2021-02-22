@@ -5,6 +5,19 @@ Terraform module for Security Group
 
 This module focuses on [SecurityGroups](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html)
 
+## Versions
+
+- Module tested for Terraform 0.14. 
+- `main` branch: Provider versions not pinned to keep up with Terraform releases
+- `tags` Tags are pinned with versions (use tag latest tag in your releases)
+- AWS provider version [3.29.0](https://registry.terraform.io/providers/hashicorp/aws/latest)
+
+**NOTE:** 
+
+- Read more on [tfremote](https://github.com/tomarv2/tfremote) 
+- I will not be pinning the main branch to keep up with Terraform releases, for deployments please
+use the latest tag versions which have versions pinned for stability.
+
 ## How to use?
 
 Recommended method:
@@ -62,12 +75,6 @@ tf -cloud aws apply -var-file <path to .tfvars file>
 ```
 tf -cloud aws destroy -var-file <path to .tfvars file>
 ```
-
-**NOTE:** 
-
-- Read more on [tfremote](https://github.com/tomarv2/tfremote) 
-- I will not be pinning the main branch to keep up with Terraform releases, for deployments please
-use the latest tag versions which have versions pinned for stability.
 
 ## Inputs
 
