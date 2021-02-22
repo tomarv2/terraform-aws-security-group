@@ -15,6 +15,7 @@ variable "profile_to_use" {
 }
 
 variable "service_ports" {
+  description = "List of allowed ports"
   default = ["80", "443"]
 }
 

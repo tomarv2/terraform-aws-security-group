@@ -43,17 +43,6 @@ export PATH=$PATH:/usr/local/bin/
 example/custom/sample.tfvars
 ```
 
-- Following entries are required:
-```
-- account_id
-- function_name
-- role_arn
-- source_file (relative path to the base directory or provide absolute path)
-- output_file_path
-- teamid
-- prjid
-```
-
 - Change to: 
 ```
 example/base
