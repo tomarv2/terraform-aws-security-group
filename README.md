@@ -14,7 +14,7 @@ Terraform module for [SecurityGroups](https://docs.aws.amazon.com/vpc/latest/use
 
 - Read more on [tfremote](https://github.com/tomarv2/tfremote)
 
-## How to use?
+## Usage
 
 Recommended method:
 
@@ -60,6 +60,9 @@ tf -cloud aws apply -var-file <path to .tfvars file>
 ```
 tf -cloud aws destroy -var-file <path to .tfvars file>
 ```
+
+Please refer to example directory [link](example/README.md) for references.
+
 
 ## Inputs
 
