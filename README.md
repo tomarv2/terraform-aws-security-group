@@ -1,16 +1,14 @@
 [![](https://img.shields.io/badge/license-Apache%202-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 
 # terraform-securitygroup
-Terraform module for Security Group
-
-This module focuses on [SecurityGroups](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html)
+Terraform module for [SecurityGroups](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html)
 
 ## Versions
 
-- Module tested for Terraform 0.14. 
-- `main` branch: Provider versions not pinned to keep up with Terraform releases
-- `tags` Tags are pinned with versions (use tag latest tag in your releases)
+- Module tested for Terraform 0.14.
 - AWS provider version [3.29.0](https://registry.terraform.io/providers/hashicorp/aws/latest)
+- `main` branch: Provider versions not pinned to keep up with Terraform releases
+- `tags` releases: Tags are pinned with versions (use tag latest tag in your releases)
 
 **NOTE:** 
 
