@@ -1,6 +1,6 @@
 <p align="center">
-    <a href="https://github.com/tomarv2/terraform-aws-ecs/actions/workflows/unit_test.yml" alt="Unit Tests">
-        <img src="https://github.com/tomarv2/terraform-aws-ecs/actions/workflows/unit_test.yml/badge.svg?branch=main" /></a>
+    <a href="https://github.com/tomarv2/terraform-aws-ecs/actions/workflows/security_scans.yml" alt="Security Scans">
+        <img src="https://github.com/tomarv2/terraform-aws-ecs/actions/workflows/security_scans.yml/badge.svg?branch=main" /></a>
     <a href="https://www.apache.org/licenses/LICENSE-2.0" alt="license">
         <img src="https://img.shields.io/github/license/tomarv2/terraform-aws-ecs" /></a>
     <a href="https://github.com/tomarv2/terraform-aws-ecs/tags" alt="GitHub tag">
@@ -15,7 +15,7 @@
         <img src="https://img.shields.io/twitter/follow/varuntomar2019?style=social&logo=twitter"></a>
 </p>
 
-# Terraform module for AWS [SecurityGroups](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html)
+# Terraform module for AWS [Security Groups](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html)
 
 ## Versions
 
@@ -70,7 +70,6 @@ tf -cloud aws apply -var-file <path to .tfvars file>
 tf -cloud aws destroy -var-file <path to .tfvars file>
 ```
 
-
 > ❗️ **Important** - Two variables are required for using `tf` package:
 >
 > - teamid
@@ -99,7 +98,6 @@ module "securitygroup" {
 ```
 
 Please refer to examples directory [link](examples) for references.
-
 
 ## Inputs
 
