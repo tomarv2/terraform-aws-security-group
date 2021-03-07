@@ -12,11 +12,12 @@ variable "prjid" {
 
 variable "profile_to_use" {
   description = "Getting values from ~/.aws/credentials"
+  default     = "default"
 }
 
 variable "service_ports" {
   description = "List of allowed ports"
-  default = ["80", "443"]
+  default     = ["80", "443"]
 }
 
 variable "aws_region" {

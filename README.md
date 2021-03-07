@@ -15,9 +15,7 @@
         <img src="https://img.shields.io/twitter/follow/varuntomar2019?style=social&logo=twitter"></a>
 </p>
 
-# terraform-securitygroup
-
-Terraform module for [SecurityGroups](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html)
+# Terraform module for AWS [SecurityGroups](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html)
 
 ## Versions
 
@@ -52,18 +50,10 @@ pip install tfremote
 export TF_AWS_BUCKET=<remote state bucket name>
 export TF_AWS_PROFILE=default
 export TF_AWS_BUCKET_REGION=us-west-2
-export PATH=$PATH:/usr/local/bin/
 ```  
 
-- Update:
-```
-example/custom/sample.tfvars
-```
+- Updated `examples` directory with required values 
 
-- Change to: 
-```
-example/base
-``` 
 
 - Run and verify the output before deploying:
 ```
@@ -80,7 +70,35 @@ tf -cloud aws apply -var-file <path to .tfvars file>
 tf -cloud aws destroy -var-file <path to .tfvars file>
 ```
 
-Please refer to example directory [link](example) for references.
+
+> ❗️ **Important** - Two variables are required for using `tf` package:
+>
+> - teamid
+> - prjid
+>
+> These variables are required to set backend path in the remote storage.
+> Variables can be defined using:
+>
+> - As `inline variables` e.g.: `-var='teamid=demo-team' -var='prjid=demo-project'`
+> - Inside `.tfvars` file e.g.: `-var-file=<tfvars file location> `
+>
+> For more information refer to [Terraform documentation](https://www.terraform.io/docs/language/values/variables.html)
+
+##### Security Group
+```
+module "securitygroup" {
+  source = "../"
+
+  email         = "demo@demo.com"
+  service_ports = ["22", "80", "443", "5432", "8000"]
+  #-----------------------------------------------
+  # Note: Do not change teamid and prjid once set.
+  teamid = var.teamid
+  prjid  = var.prjid
+}
+```
+
+Please refer to examples directory [link](examples) for references.
 
 
 ## Inputs
