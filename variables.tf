@@ -24,3 +24,9 @@ variable "aws_region" {
   description = "The AWS region to create resources"
   default     = "us-west-2"
 }
+
+variable "deploy_security_group" {
+  description = "feature flag, true or false"
+  default     = true
+  type        = bool
+}
