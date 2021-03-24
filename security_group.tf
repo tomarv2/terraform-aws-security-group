@@ -2,7 +2,7 @@ resource "aws_security_group" "default" {
   count = var.deploy_security_group ? 1 : 0
 
   name        = "${var.teamid}-${var.prjid}"
-  description = "used by ${var.teamid}-${var.prjid}"
+  description = "Terraform managed: ${var.teamid}-${var.prjid}"
   tags        = merge(local.shared_tags)
   lifecycle {
     create_before_destroy = true

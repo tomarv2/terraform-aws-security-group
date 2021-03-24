@@ -87,9 +87,6 @@ tf -cloud aws destroy
 module "securitygroup" {
   source = "../"
 
-  deploy_security_group = true
-  
-  email         = "demo@demo.com"
   service_ports = ["22", "80", "443", "5432", "8000"]
   #-----------------------------------------------
   # Note: Do not change teamid and prjid once set.
@@ -119,7 +116,6 @@ Please refer to examples directory [link](examples) for references.
 |------|-------------|------|---------|:--------:|
 | aws\_region | The AWS region to create resources | `string` | `"us-west-2"` | no |
 | deploy\_security\_group | feature flag, true or false | `bool` | `true` | no |
-| email | email address to be used for tagging (suggestion: use group email address) | `any` | n/a | yes |
 | prjid | (Required) Name of the project/stack e.g: mystack, nifieks, demoaci. Should not be changed after running 'tf apply' | `any` | n/a | yes |
 | profile\_to\_use | Getting values from ~/.aws/credentials | `string` | `"default"` | no |
 | service\_ports | List of allowed ports | `list` | <pre>[<br>  "80",<br>  "443"<br>]</pre> | no |
