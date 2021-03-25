@@ -11,10 +11,10 @@ variable "profile_to_use" {
   default     = "default"
 }
 
-variable "service_ports" {
-  description = "List of allowed ports"
-  default     = ["80", "443"]
-}
+//variable "service_ports" {
+//  description = "List of allowed ports"
+//  default     = ["80", "443"]
+//}
 
 variable "aws_region" {
   description = "The AWS region to create resources"
@@ -25,4 +25,58 @@ variable "deploy_security_group" {
   description = "feature flag, true or false"
   default     = true
   type        = bool
+}
+
+variable "security_group_ingress" {
+  description = "Can be specified multiple times for each ingress rule. "
+  type = map(object({
+    description = string
+    from_port   = number
+    protocol    = string
+    to_port     = number
+    self        = bool
+    cidr_blocks = list(string)
+  }))
+  default = {
+    default = {
+      description = "NFS Inbound"
+      from_port   = 2049
+      protocol    = "tcp"
+      to_port     = 2049
+      self        = true
+      cidr_blocks = []
+    }
+  }
+}
+
+variable "security_group_egress" {
+  description = "Can be specified multiple times for each egress rule. "
+  type = map(object({
+    description = string
+    from_port   = number
+    protocol    = string
+    to_port     = number
+    self        = bool
+    cidr_blocks = list(string)
+  }))
+  default = {
+    default = {
+      description = "Allow All Outbound"
+      from_port   = 0
+      protocol    = "-1"
+      to_port     = 0
+      self        = false
+      cidr_blocks = ["0.0.0.0/0"]
+    }
+  }
+}
+
+variable "account_id" {}
+
+variable "description" {
+  default = null
+}
+
+variable "name" {
+  default = null
 }
