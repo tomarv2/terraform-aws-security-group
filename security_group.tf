@@ -1,4 +1,4 @@
-resource "aws_security_group" "this" {
+resource "aws_security_group" "default" {
   count = var.deploy_security_group ? 1 : 0
 
   name       = var.name != null ? var.name : "${var.teamid}-${var.prjid}"
@@ -13,9 +13,9 @@ resource "aws_security_group" "this" {
   }
 }
 
-resource "aws_security_group_rule" "this_ingress" {
+resource "aws_security_group_rule" "default_ingress" {
   for_each          = var.security_group_ingress
-  security_group_id = join("", aws_security_group.this.*.id)
+  security_group_id = join("", aws_security_group.default.*.id)
   type              = "ingress"
   description       = lookup(each.value, "description", "Terraform managed: ${var.teamid}-${var.prjid}")
   from_port         = lookup(each.value, "from_port", null)
@@ -25,9 +25,9 @@ resource "aws_security_group_rule" "this_ingress" {
   cidr_blocks       = lookup(each.value, "cidr_blocks", null)
 }
 
-resource "aws_security_group_rule" "this_egress" {
+resource "aws_security_group_rule" "default_egress" {
   for_each          = var.security_group_egress
-  security_group_id = join("", aws_security_group.this.*.id)
+  security_group_id = join("", aws_security_group.default.*.id)
   type              = "egress"
   from_port         = lookup(each.value, "from_port", null)
   protocol          = lookup(each.value, "protocol", null)
