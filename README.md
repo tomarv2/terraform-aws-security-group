@@ -83,10 +83,32 @@ tf -cloud aws destroy -var='teamid=foo' -var='prjid=bar'
 
 ##### Security Group
 ```
-module "securitygroup" {
-  source = "../"
+module "common" {
+  source = "git::git@github.com:tomarv2/terraform-global.git//common?ref=v0.0.1"
+}
 
-  service_ports = ["22", "80", "443", "5432", "8000"]
+module "security_group" {
+  source = "../"
+  
+  account_id = "123456789012"
+  security_group_ingress = {
+    default = {
+      description = "https"
+      from_port   = 443
+      protocol    = "tcp"
+      to_port     = 443
+      self        = true
+      cidr_blocks = []
+    },
+    ssh = {
+      description = "ssh"
+      from_port   = 22
+      protocol    = "tcp"
+      to_port     = 22
+      self        = false
+      cidr_blocks = module.common.cidr_for_sec_grp_access
+    }
+  }
   #-----------------------------------------------
   # Note: Do not change teamid and prjid once set.
   teamid = var.teamid
@@ -113,11 +135,15 @@ Please refer to examples directory [link](examples) for references.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| account\_id | n/a | `any` | n/a | yes |
 | aws\_region | The AWS region to create resources | `string` | `"us-west-2"` | no |
 | deploy\_security\_group | feature flag, true or false | `bool` | `true` | no |
+| description | n/a | `any` | `null` | no |
+| name | n/a | `any` | `null` | no |
 | prjid | (Required) Name of the project/stack e.g: mystack, nifieks, demoaci. Should not be changed after running 'tf apply' | `any` | n/a | yes |
 | profile\_to\_use | Getting values from ~/.aws/credentials | `string` | `"default"` | no |
-| service\_ports | List of allowed ports | `list` | <pre>[<br>  "80",<br>  "443"<br>]</pre> | no |
+| security\_group\_egress | Can be specified multiple times for each egress rule. | <pre>map(object({<br>    description = string<br>    from_port   = number<br>    protocol    = string<br>    to_port     = number<br>    self        = bool<br>    cidr_blocks = list(string)<br>  }))</pre> | <pre>{<br>  "default": {<br>    "cidr_blocks": [<br>      "0.0.0.0/0"<br>    ],<br>    "description": "Allow All Outbound",<br>    "from_port": 0,<br>    "protocol": "-1",<br>    "self": false,<br>    "to_port": 0<br>  }<br>}</pre> | no |
+| security\_group\_ingress | Can be specified multiple times for each ingress rule. | <pre>map(object({<br>    description = string<br>    from_port   = number<br>    protocol    = string<br>    to_port     = number<br>    self        = bool<br>    cidr_blocks = list(string)<br>  }))</pre> | <pre>{<br>  "default": {<br>    "cidr_blocks": [],<br>    "description": "NFS Inbound",<br>    "from_port": 2049,<br>    "protocol": "tcp",<br>    "self": true,<br>    "to_port": 2049<br>  }<br>}</pre> | no |
 | teamid | (Required) Name of the team/group e.g. devops, dataengineering. Should not be changed after running 'tf apply' | `any` | n/a | yes |
 
 ## Outputs

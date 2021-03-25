@@ -1,10 +1,10 @@
 resource "aws_security_group" "default" {
   count = var.deploy_security_group ? 1 : 0
 
-  name       = var.name != null ? var.name : "${var.teamid}-${var.prjid}"
-  description                     = var.description == null ? "Terraform managed: ${var.teamid}-${var.prjid}" : var.description
+  name        = var.name != null ? var.name : "${var.teamid}-${var.prjid}"
+  description = var.description == null ? "Terraform managed: ${var.teamid}-${var.prjid}" : var.description
   vpc_id      = module.aws.vpc[var.account_id][var.aws_region]
-  tags = merge(local.shared_tags)
+  tags        = merge(local.shared_tags)
 
   lifecycle {
     ignore_changes = [

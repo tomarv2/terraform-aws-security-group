@@ -11,11 +11,6 @@ variable "profile_to_use" {
   default     = "default"
 }
 
-//variable "service_ports" {
-//  description = "List of allowed ports"
-//  default     = ["80", "443"]
-//}
-
 variable "aws_region" {
   description = "The AWS region to create resources"
   default     = "us-west-2"
