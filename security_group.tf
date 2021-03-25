@@ -14,7 +14,7 @@ resource "aws_security_group" "default" {
       to_port     = ingress.value
       protocol    = "tcp"
       cidr_blocks = module.common.cidr_for_sec_grp_access
-      description = "used by ${var.teamid}-${var.prjid}"
+      description = "Terraform managed: ${var.teamid}-${var.prjid}"
     }
   }
   # add security group to itself
@@ -23,7 +23,7 @@ resource "aws_security_group" "default" {
     self        = true
     from_port   = 0
     to_port     = 0
-    description = "used by ${var.teamid}-${var.prjid}"
+    description = "Terraform managed: ${var.teamid}-${var.prjid}"
   }
   # outbound internet access
   egress {
@@ -31,7 +31,7 @@ resource "aws_security_group" "default" {
     to_port     = 0
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
-    description = "used by ${var.teamid}-${var.prjid}"
+    description = "Terraform managed: ${var.teamid}-${var.prjid}"
   }
 
   revoke_rules_on_delete = true
