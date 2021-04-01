@@ -15,7 +15,7 @@
         <img src="https://img.shields.io/twitter/follow/varuntomar2019?style=social&logo=twitter"></a>
 </p>
 
-# Terraform module for AWS [Security Groups](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html)
+# Terraform module for AWS [Security Groups]((https://registry.terraform.io/modules/tomarv2/security-group/aws/latest))
 
 ## Versions
 
@@ -88,7 +88,7 @@ module "common" {
 }
 
 module "security_group" {
-  source = "../"
+  source = "git::git@github.com:tomarv2/terraform-aws-security-group.git?ref=v0.0.2"
   
   account_id = "123456789012"
   security_group_ingress = {
