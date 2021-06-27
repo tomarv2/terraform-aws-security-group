@@ -33,4 +33,4 @@ repos:
     - id: checkov
       verbose: true
       args:
-      - -d . --framework terraform -o output_format json
+      - -d . --framework terraform -o output_format json -skip_check CKV2_AWS_5
