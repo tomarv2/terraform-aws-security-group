@@ -81,3 +81,5 @@ _testmain.go
 
 # ignore requried test file(s)
 **test**
+examples/*test
+**remote_backend.tf**

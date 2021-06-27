@@ -7,31 +7,35 @@ resource "aws_security_group" "default" {
   tags        = merge(local.shared_tags)
 
   lifecycle {
+    create_before_destroy = true
     ignore_changes = [
       tags,
     ]
   }
 }
 
-resource "aws_security_group_rule" "default_ingress" {
-  for_each          = var.security_group_ingress
+resource "aws_security_group_rule" "default" {
+  for_each = var.security_group_ingress
+
   security_group_id = join("", aws_security_group.default.*.id)
-  type              = "ingress"
+  type              = each.value.type
   description       = lookup(each.value, "description", "Terraform managed: ${var.teamid}-${var.prjid}")
   from_port         = lookup(each.value, "from_port", null)
   protocol          = lookup(each.value, "protocol", null)
   to_port           = lookup(each.value, "to_port", null)
-  self              = lookup(each.value, "self", null)
-  cidr_blocks       = lookup(each.value, "cidr_blocks", null)
+  self              = coalesce(lookup(each.value, "self", null), false) ? true : null
+  cidr_blocks       = try(length(lookup(each.value, "cidr_blocks", [])), 0) > 0 ? each.value["cidr_blocks"] : null
 }
 
 resource "aws_security_group_rule" "default_egress" {
-  for_each          = var.security_group_egress
+  for_each = var.security_group_egress
+
   security_group_id = join("", aws_security_group.default.*.id)
+  description       = lookup(each.value, "description", "Terraform managed: ${var.teamid}-${var.prjid}")
   type              = "egress"
   from_port         = lookup(each.value, "from_port", null)
   protocol          = lookup(each.value, "protocol", null)
   to_port           = lookup(each.value, "to_port", null)
-  self              = lookup(each.value, "self", null)
-  cidr_blocks       = lookup(each.value, "cidr_blocks", null)
+  self              = coalesce(lookup(each.value, "self", null), false) ? true : null
+  cidr_blocks       = try(length(lookup(each.value, "cidr_blocks", [])), 0) > 0 ? each.value["cidr_blocks"] : null
 }

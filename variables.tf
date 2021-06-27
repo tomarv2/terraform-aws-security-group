@@ -1,19 +1,17 @@
 variable "teamid" {
   description = "(Required) Name of the team/group e.g. devops, dataengineering. Should not be changed after running 'tf apply'"
+  type        = string
 }
 
 variable "prjid" {
   description = "(Required) Name of the project/stack e.g: mystack, nifieks, demoaci. Should not be changed after running 'tf apply'"
-}
-
-variable "profile_to_use" {
-  description = "Getting values from ~/.aws/credentials"
-  default     = "default"
+  type        = string
 }
 
 variable "aws_region" {
   description = "The AWS region to create resources"
   default     = "us-west-2"
+  type        = string
 }
 
 variable "deploy_security_group" {
@@ -23,11 +21,12 @@ variable "deploy_security_group" {
 }
 
 variable "security_group_ingress" {
-  description = "Can be specified multiple times for each ingress rule. "
+  description = "Can be specified multiple times for each ingress rule."
   type = map(object({
     description = string
     from_port   = number
     protocol    = string
+    type        = string
     to_port     = number
     self        = bool
     cidr_blocks = list(string)
@@ -37,6 +36,7 @@ variable "security_group_ingress" {
       description = "NFS Inbound"
       from_port   = 2049
       protocol    = "tcp"
+      type        = "ingress"
       to_port     = 2049
       self        = true
       cidr_blocks = []
@@ -45,10 +45,11 @@ variable "security_group_ingress" {
 }
 
 variable "security_group_egress" {
-  description = "Can be specified multiple times for each egress rule. "
+  description = "Can be specified multiple times for each egress rule."
   type = map(object({
     description = string
     from_port   = number
+    type        = string
     protocol    = string
     to_port     = number
     self        = bool
@@ -58,6 +59,7 @@ variable "security_group_egress" {
     default = {
       description = "Allow All Outbound"
       from_port   = 0
+      type        = "egress"
       protocol    = "-1"
       to_port     = 0
       self        = false
@@ -66,12 +68,19 @@ variable "security_group_egress" {
   }
 }
 
-variable "account_id" {}
+variable "account_id" {
+  description = "AWS account id to deploy resources"
+  type        = string
+}
 
 variable "description" {
-  default = null
+  description = "Security group description"
+  default     = null
+  type        = string
 }
 
 variable "name" {
-  default = null
+  description = "Name of the security group"
+  default     = null
+  type        = string
 }
