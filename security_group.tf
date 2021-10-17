@@ -15,7 +15,7 @@ resource "aws_security_group" "default" {
 }
 
 resource "aws_security_group_rule" "default" {
-  for_each = var.security_group_ingress
+  for_each = var.deploy_security_group ? var.security_group_ingress : {}
 
   security_group_id = join("", aws_security_group.default.*.id)
   type              = each.value.type
@@ -28,7 +28,7 @@ resource "aws_security_group_rule" "default" {
 }
 
 resource "aws_security_group_rule" "default_egress" {
-  for_each = var.security_group_egress
+  for_each = var.deploy_security_group ? var.security_group_egress : {}
 
   security_group_id = join("", aws_security_group.default.*.id)
   description       = lookup(each.value, "description", "Terraform managed: ${var.teamid}-${var.prjid}")

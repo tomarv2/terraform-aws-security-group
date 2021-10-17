@@ -3,7 +3,6 @@ repos:
     rev: v1.48.0
     hooks:
       - id: terraform_fmt
-      # - id: terraform_validate # check is failing in githu actions as modules are not open
       - id: terraform_tflint
         args:
           - '--args=--only=terraform_deprecated_interpolation'
@@ -28,9 +27,8 @@ repos:
       - id: check-yaml
 
   - repo: https://github.com/bridgecrewio/checkov.git
-    rev: '1.0.864' # change to tag or sha
+    rev: '2.0.469'
     hooks:
     - id: checkov
       verbose: true
-      args:
-      - -d . --framework terraform -o output_format json -skip_check CKV2_AWS_5
+      args: [-d, '.', --framework,'terraform', --skip-check, 'CKV2_AWS_5']
