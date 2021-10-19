@@ -10,7 +10,6 @@ variable "prjid" {
 
 variable "aws_region" {
   description = "The AWS region to create resources"
-  default     = "us-west-2"
   type        = string
 }
 
