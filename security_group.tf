@@ -3,8 +3,9 @@ resource "aws_security_group" "default" {
 
   name        = var.name != null ? var.name : "${var.teamid}-${var.prjid}"
   description = var.description == null ? "Terraform managed: ${var.teamid}-${var.prjid}" : var.description
-  vpc_id      = module.aws.vpc[local.account_info][local.override_aws_region]
-  tags        = merge(local.shared_tags)
+  vpc_id      = module.aws.vpc[local.account][local.region]
+  tags        = var.custom_tags != null ? merge(var.custom_tags, local.shared_tags) : merge(local.shared_tags)
+
 
   lifecycle {
     create_before_destroy = true
