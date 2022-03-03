@@ -8,13 +8,8 @@ variable "prjid" {
   type        = string
 }
 
-variable "aws_region" {
-  description = "The AWS region to create resources"
-  type        = string
-}
-
 variable "deploy_security_group" {
-  description = "feature flag, true or false"
+  description = "Feature flag, true or false"
   default     = true
   type        = bool
 }
@@ -67,11 +62,6 @@ variable "security_group_egress" {
   }
 }
 
-variable "account_id" {
-  description = "AWS account id to deploy resources"
-  type        = string
-}
-
 variable "description" {
   description = "Security group description"
   default     = null
@@ -82,4 +72,10 @@ variable "name" {
   description = "Name of the security group"
   default     = null
   type        = string
+}
+
+variable "custom_tags" {
+  type        = any
+  description = "Extra custom tags"
+  default     = null
 }
