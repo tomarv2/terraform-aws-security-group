@@ -17,23 +17,25 @@ variable "deploy_security_group" {
 variable "security_group_ingress" {
   description = "Can be specified multiple times for each ingress rule."
   type = map(object({
-    description = string
-    from_port   = number
-    protocol    = string
-    type        = string
-    to_port     = number
-    self        = bool
-    cidr_blocks = list(string)
+    description              = string
+    from_port                = number
+    protocol                 = string
+    type                     = string
+    to_port                  = number
+    self                     = bool
+    cidr_blocks              = list(string)
+    source_security_group_id = string
   }))
   default = {
     default = {
-      description = "NFS Inbound"
-      from_port   = 2049
-      protocol    = "tcp"
-      type        = "ingress"
-      to_port     = 2049
-      self        = true
-      cidr_blocks = []
+      description              = "NFS Inbound"
+      from_port                = 2049
+      protocol                 = "tcp"
+      type                     = "ingress"
+      to_port                  = 2049
+      self                     = true
+      cidr_blocks              = []
+      source_security_group_id = null
     }
   }
 }

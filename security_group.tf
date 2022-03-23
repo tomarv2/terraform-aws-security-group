@@ -31,12 +31,13 @@ resource "aws_security_group_rule" "default" {
 resource "aws_security_group_rule" "default_egress" {
   for_each = var.deploy_security_group ? var.security_group_egress : {}
 
-  security_group_id = join("", aws_security_group.default.*.id)
-  description       = lookup(each.value, "description", "Terraform managed: ${var.teamid}-${var.prjid}")
-  type              = "egress"
-  from_port         = lookup(each.value, "from_port", null)
-  protocol          = lookup(each.value, "protocol", null)
-  to_port           = lookup(each.value, "to_port", null)
-  self              = coalesce(lookup(each.value, "self", null), false) ? true : null
-  cidr_blocks       = try(length(lookup(each.value, "cidr_blocks", [])), 0) > 0 ? each.value["cidr_blocks"] : null
+  security_group_id        = join("", aws_security_group.default.*.id)
+  description              = lookup(each.value, "description", "Terraform managed: ${var.teamid}-${var.prjid}")
+  type                     = "egress"
+  from_port                = lookup(each.value, "from_port", null)
+  protocol                 = lookup(each.value, "protocol", null)
+  to_port                  = lookup(each.value, "to_port", null)
+  self                     = coalesce(lookup(each.value, "self", null), false) ? true : null
+  cidr_blocks              = try(length(lookup(each.value, "cidr_blocks", [])), 0) > 0 ? each.value["cidr_blocks"] : null
+  source_security_group_id = lookup(each.value, "source_security_group_id", null)
 }
