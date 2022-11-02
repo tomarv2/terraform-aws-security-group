@@ -1,14 +1,20 @@
-output "security_group_id" {
-  description = "The ID of the default security group."
-  value       = join("", aws_security_group.default.*.id)
+output "id" {
+  description = "The ID of the security group."
+  value       = [for sg in aws_security_group.this : sg.id]
 }
 
-output "security_group_vpc_id" {
+output "name" {
+  description = "The name of the security group."
+  value       = [for sg in aws_security_group.this : sg.name]
+}
+
+
+output "vpc_id" {
   description = "VPC id associated with security group."
-  value       = join("", aws_security_group.default.*.vpc_id)
+  value       = [for sg in aws_security_group.this : sg.vpc_id]
 }
 
-output "security_group_arn" {
-  description = "Security group arn."
-  value       = join("", aws_security_group.default.*.arn)
+output "arn" {
+  description = "Security group ARN."
+  value       = [for sg in aws_security_group.this : sg.arn]
 }
