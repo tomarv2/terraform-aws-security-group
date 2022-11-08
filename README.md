@@ -89,47 +89,25 @@ tf -c=aws destroy -var='teamid=foo' -var='prjid=bar'
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 
-| Name | Version |
-|------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0.1 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | ~> 4.35 |
+No requirements.
 
 ## Providers
 
-| Name | Version |
-|------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | ~> 4.35 |
+No providers.
 
 ## Modules
 
-| Name | Source | Version |
-|------|--------|---------|
-| <a name="module_aws"></a> [aws](#module\_aws) | git::git@github.com:tomarv2/terraform-global.git//aws | v0.0.1 |
-| <a name="module_common"></a> [common](#module\_common) | git::git@github.com:tomarv2/terraform-global.git//common | v0.0.1 |
+No modules.
 
 ## Resources
 
-| Name | Type |
-|------|------|
-| [aws_security_group.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group) | resource |
-| [aws_caller_identity.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity) | data source |
-| [aws_region.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/region) | data source |
+No resources.
 
 ## Inputs
 
-| Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
-| <a name="input_config"></a> [config](#input\_config) | Security groups configuration | `any` | `{}` | no |
-| <a name="input_extra_tags"></a> [extra\_tags](#input\_extra\_tags) | Additional tags to associate | `map(string)` | `{}` | no |
-| <a name="input_security_group_create_timeout"></a> [security\_group\_create\_timeout](#input\_security\_group\_create\_timeout) | How long to wait for the security group to be created. | `string` | `"10m"` | no |
-| <a name="input_security_group_delete_timeout"></a> [security\_group\_delete\_timeout](#input\_security\_group\_delete\_timeout) | How long to retry on `DependencyViolation` errors during security group deletion from<br>lingering ENIs left by certain AWS services such as Elastic Load Balancing. | `string` | `"15m"` | no |
+No inputs.
 
 ## Outputs
 
-| Name | Description |
-|------|-------------|
-| <a name="output_arn"></a> [arn](#output\_arn) | Security group ARN. |
-| <a name="output_id"></a> [id](#output\_id) | The ID of the security group. |
-| <a name="output_name"></a> [name](#output\_name) | The name of the security group. |
-| <a name="output_vpc_id"></a> [vpc\_id](#output\_vpc\_id) | VPC id associated with security group. |
+No outputs.
 <!-- END_TF_DOCS -->
